@@ -1,1 +1,5 @@
-print("BibleStudyProject")
+from studyNotes import createStudyNote
+
+createStudyNote("1 Chronicles", 8, "Continues the geneologies of the tribes of Israel including the tribe of Benjamin.")
+
+createStudyNote("Genesis", 1, "Hello World")

@@ -1,23 +1,22 @@
-from pathlib import Path
+from fileManager import createFolder
 
-def createStudyNote(chapterName, summary):
-    folderPath = Path("Bible/1Chronicles")
+# Takes a chapter name and a summary and puts it into a markdown file.
+def createStudyNote(bookName, chapterNumber, summary):
 
-    folderPath.mkdir(parents=True, exist_ok=True)
+    # Create folder path in Bible/1Chronicles folder.
+    folderPath = createFolder(f"Bible/{bookName}")
 
-    filePath = folderPath / f"{chapterName}.md"
+    # Create file path using chapter name given as input.
+    fileName = f"{bookName}{chapterNumber}.md"
 
+    filePath = folderPath / fileName
+
+    # Open created file path ("w" = write)
     with open(filePath, "w") as file:
-        file.write(f"# {chapterName}\n")
+        # Write chapter name as heading.
+        file.write(f"# {bookName} Chapter { chapterNumber}\n")
+        # Write summary into md file.
         file.write(summary)
 
+    # Print success message
     print(f"Created {filePath}")
-
-summary = """
-1 Chronicles 6 explains the genealogy of Levi,
-the priestly line of Aaron, and the Levitical cities.
-"""
-
-createStudyNote("1Chronicles6", summary)
-
-createStudyNote("1Chronicles7", "Geneology of the tribes of Israel.")

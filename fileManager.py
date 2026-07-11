@@ -1,7 +1,9 @@
 from pathlib import Path
 
-chapterFolder = Path("Bible/1Chronicles")
+# Takes a folder path and ensures it exists.
+def createFolder(folderPath):
+    folder = Path(folderPath)
 
-chapterFolder.mkdir(parents=True, exist_ok=True)
+    folder.mkdir(parents=True, exist_ok=True)
 
-print("Folder created successfully")
+    return folder
