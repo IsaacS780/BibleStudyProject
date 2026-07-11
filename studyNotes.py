@@ -7,7 +7,7 @@ summary = """
 the priestly line of Aaron, and the Levitical cities.
 """
 
-file_name = "1_chronicles_6.md"
+file_name = "1Chronicles6.md"
 
 with open(file_name, "w") as file:
     file.write(f"# {chapter}\n")
