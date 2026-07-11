@@ -1,16 +1,23 @@
-# This program creates a simple Bible study note
+from pathlib import Path
 
-chapter = "1 Chronicles 6"
+def createStudyNote(chapterName, summary):
+    folderPath = Path("Bible/1Chronicles")
+
+    folderPath.mkdir(parents=True, exist_ok=True)
+
+    filePath = folderPath / f"{chapterName}.md"
+
+    with open(filePath, "w") as file:
+        file.write(f"# {chapterName}\n")
+        file.write(summary)
+
+    print(f"Created {filePath}")
 
 summary = """
 1 Chronicles 6 explains the genealogy of Levi,
 the priestly line of Aaron, and the Levitical cities.
 """
 
-file_name = "Bible/1Chronicles/1Chronicles6.md"
+createStudyNote("1Chronicles6", summary)
 
-with open(file_name, "w") as file:
-    file.write(f"# {chapter}\n")
-    file.write(summary)
-
-print(f"Created {file_name}")
+createStudyNote("1Chronicles7", "Geneology of the tribes of Israel.")
