@@ -1,25 +1,28 @@
-from studyNotes import createStudyNote
-from dataManager import saveChapterData
+from models.chapter import Chapter
+from managers.studyNotes import createStudyNote
+from managers.dataManager import saveChapterData
 
-chapterData = {
-    "book": "1Chronicles",
-    "chapter": 9,
-    "summary": "The genealogy of Benjamin continues.",
-    "people": [
-        "Benjamin"
-    ],
-    "themes": [
-        "genealogy"
-    ]
-}
+# Get user input for what to study
+book = input("Enter book: ")
 
-createStudyNote(
-    chapterData["book"],
-    chapterData["chapter"],
-    chapterData["summary"]
-)
+# Get chapter number: Must be an integer value.
+while True:
+    try:
+        chapterNumber = int(input("Enter Chapter: "))
+        break
+    except ValueError:
+        print("Please enter a valid chapter number.")
+# Get summary value from user.
+summary = input("Enter Summary: ")
 
-saveChapterData(
-    "chapterData.json",
-    chapterData
-)
+# Creates chapter data.
+chapter = Chapter(book, chapterNumber, summary)
+
+# Creates study note markdown file.
+createStudyNote(chapter)
+
+jsonPath = f"{chapter.getFolderName()}/{chapter.getJsonFileName()}"
+
+# Convert the Chapter object to a dictionary because the JSON module
+# cannot serialize custom Python objects directly.
+saveChapterData(jsonPath, chapter.toDictionary())
