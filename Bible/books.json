@@ -1,0 +1,14 @@
+{
+    "Genesis": {
+        "chapters": 50,
+        "canon": "Protestant"
+    },
+    "Exodus": {
+        "chapters": 40,
+        "canon": "Protestant"
+    },
+    "1 Chronicles": {
+        "chapters": 29,
+        "canon": "Protestant"
+    }
+}
