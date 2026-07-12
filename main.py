@@ -1,6 +1,7 @@
 from models.chapter import Chapter
 from managers.studyNotes import createStudyNote
-from managers.dataManager import saveChapterData
+from managers.dataManager import saveChapterData, loadChapterData
+from models.book import Book
 
 # Get user input for what to study
 book = input("Enter book: ")
@@ -26,3 +27,14 @@ jsonPath = f"{chapter.getFolderName()}/{chapter.getJsonFileName()}"
 # Convert the Chapter object to a dictionary because the JSON module
 # cannot serialize custom Python objects directly.
 saveChapterData(jsonPath, chapter.toDictionary())
+
+loadedChapter = loadChapterData(jsonPath)
+
+print("\nData loaded from JSON: ")
+
+print(loadedChapter)
+
+firstChronicles = Book("1 Chronicles", 29, "Protestant")
+
+print(firstChronicles.isValidChapter(9))
+print(firstChronicles.isValidChapter(99))
