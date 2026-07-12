@@ -1,13 +1,11 @@
 {
-    "book": "1 Chronicles",
-    "chapter": 8,
-    "summary": "Benjamin's genealogy continues.",
+    "book": "1Chronicles",
+    "chapter": 9,
+    "summary": "The genealogy of Benjamin continues.",
     "people": [
-        "Benjamin",
-        "Saul"
+        "Benjamin"
     ],
     "themes": [
-        "genealogy",
-        "tribes"
+        "genealogy"
     ]
 }

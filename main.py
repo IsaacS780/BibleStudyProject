@@ -1,5 +1,25 @@
 from studyNotes import createStudyNote
+from dataManager import saveChapterData
 
-createStudyNote("1 Chronicles", 8, "Continues the geneologies of the tribes of Israel including the tribe of Benjamin.")
+chapterData = {
+    "book": "1Chronicles",
+    "chapter": 9,
+    "summary": "The genealogy of Benjamin continues.",
+    "people": [
+        "Benjamin"
+    ],
+    "themes": [
+        "genealogy"
+    ]
+}
 
-createStudyNote("Genesis", 1, "Hello World")
+createStudyNote(
+    chapterData["book"],
+    chapterData["chapter"],
+    chapterData["summary"]
+)
+
+saveChapterData(
+    "chapterData.json",
+    chapterData
+)
