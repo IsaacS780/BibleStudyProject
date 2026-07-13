@@ -1,14 +1,40 @@
 {
     "Genesis": {
-        "chapters": 50,
-        "canon": "Protestant"
+    "chapters": 50,
+    "canon": "Protestant",
+    "aliases": [
+        "Gen",
+        "Ge"
+    ]
     },
     "Exodus": {
         "chapters": 40,
         "canon": "Protestant"
     },
     "1 Chronicles": {
-        "chapters": 29,
-        "canon": "Protestant"
-    }
+    "chapters": 29,
+    "canon": "Protestant",
+    "aliases": [
+        "1 Chr",
+        "1Chr",
+        "I Chronicles"
+    ]
+    },
+    "2 Chronicles": {
+    "chapters": 36,
+    "canon": "Protestant",
+    "aliases": [
+        "2 Chr",
+        "2Chr",
+        "II Chronicles"
+    ]
+    },
+    "John": {
+    "chapters": 21,
+    "canon": "Protestant",
+    "aliases": [
+        "Jn",
+        "Jhn"
+    ]
+}
 }

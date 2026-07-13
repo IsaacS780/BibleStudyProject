@@ -32,7 +32,7 @@ class BookManager:
         books = {}
 
         for name, data in bookData.items():
-            books[name] = Book(name, data["chapters"], data["canon"])
+            books[name] = Book(name, data["chapters"], data["canon"], data.get("aliases", []))
 
         return BibleCatalog(books)
     
