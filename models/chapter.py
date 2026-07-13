@@ -1,3 +1,5 @@
+from config import BIBLE_FOLDER
+
 class Chapter:
 
     def __init__(self, book, chapter, summary):
@@ -17,7 +19,7 @@ class Chapter:
         return f"{self.book}{self.chapter}.json"
     
     def getFolderName(self):
-        return f"Bible/{self.book}"
+        return f"{BIBLE_FOLDER}/{self.book}"
     
     # Instance method of Chapter class to return a standard Python dictionary
     def toDictionary(self):

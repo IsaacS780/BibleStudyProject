@@ -26,11 +26,18 @@ class BookManager:
         return self.catalog.getBook(bookName)
     
     def isValidReference(self, bookName, chapterNumber):
+        # Check to ensure book exists in catalog.
+        if not self.catalog.hasBook(bookName):
+            return False
+
+        # Get book  
         book = self.getBook(bookName)
 
+        # Error if book has no data.
         if book is None:
             return False
         
+        # Return True if reference is valid.
         return book.isValidChapter(chapterNumber)
     
     # Validates a Bible reference and returns the corresponding Book object when successful.
