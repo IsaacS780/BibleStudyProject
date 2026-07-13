@@ -3,6 +3,13 @@ from managers.studyNotes import createStudyNote
 from managers.dataManager import saveChapterData, loadChapterData
 from managers.bookManager import BookManager
 
+# Book - Represents one Bible book
+# Bible Catalog -manages a collection of books. Can contain multiple canons and book collections.
+# BookManager - Coordinates loading and access of books
+
+#---------------------------------------------------------------------
+# MAIN PROGRAM FLOW---------------------------------------------------
+#---------------------------------------------------------------------
 
 # Get user input for what to study.
 bookName = input("Enter book: ")
@@ -21,17 +28,11 @@ summary = input("Enter Summary: ")
 # Create the BookManager.
 bookManager = BookManager()
 
-# Retrieve the requested book.
-book = bookManager.getBook(bookName)
+book = bookManager.getValidBook(bookName, chapterNumber)
 
-# Validate the book.
+# Error condition if reference is invalid.
 if book is None:
-    print(f"'{bookName}' is not a valid book.")
-    exit()
-
-# Validate the chapter.
-if not book.isValidChapter(chapterNumber):
-    print(f"Chapter {chapterNumber} does not exist in {book.name}.")
+    print(f"'{bookName} {chapterNumber}' is not a valid Bible reference.")
     exit()
 
 # Create the Chapter object.

@@ -1,5 +1,7 @@
 BIBLE_FOLDER = "Bible"
 
+BIBLE_BOOKS_FILE = "Bible/books.json"
+
 DEFAULT_NOTE_EXTENSION = ".md"
 
 DEFAULT_DATA_EXTENSION = ".json"
