@@ -1,7 +1,6 @@
-from models.chapter import Chapter
-from managers.studyNotes import createStudyNote
-from managers.dataManager import saveChapterData, loadChapterData
 from managers.bookManager import BookManager
+from managers.studyService import StudyService
+from managers.referenceParser import ReferenceParser
 
 # Book - Represents one Bible book
 # Bible Catalog -manages a collection of books. Can contain multiple canons and book collections.
@@ -11,16 +10,16 @@ from managers.bookManager import BookManager
 # MAIN PROGRAM FLOW---------------------------------------------------
 #---------------------------------------------------------------------
 
-# Get user input for what to study.
-bookName = input("Enter book: ")
+# Get user input for a Bible reference and parse it into a book name and chapter number.
+parser = ReferenceParser()
 
-# Get chapter number. Must be an integer.
 while True:
     try:
-        chapterNumber = int(input("Enter Chapter: "))
+        reference = input("Enter Bible reference: ")
+        bookName, chapterNumber = parser.parse(reference)
         break
     except ValueError:
-        print("Please enter a valid chapter number.")
+        print("Invalid reference format. Please enter a valid Bible reference (e.g., 'John 3').")
 
 # Get summary from the user.
 summary = input("Enter Summary: ")
@@ -35,18 +34,9 @@ if book is None:
     print(f"'{bookName} {chapterNumber}' is not a valid Bible reference.")
     exit()
 
-# Create the Chapter object.
-chapter = Chapter(book.name, chapterNumber, summary)
+studyService = StudyService()
 
-# Create the Markdown study note.
-createStudyNote(chapter)
+loadedChapter = studyService.createStudy(book, chapterNumber, summary)
 
-# Save the JSON data.
-jsonPath = f"{chapter.getFolderName()}/{chapter.getJsonFileName()}"
-saveChapterData(jsonPath, chapter.toDictionary())
-
-# Load the JSON back for testing.
-loadedChapter = loadChapterData(jsonPath)
-
-print("\nData loaded from JSON:")
+print("\nData loaded fromJSON:")
 print(loadedChapter)

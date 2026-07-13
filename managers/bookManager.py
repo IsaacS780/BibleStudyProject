@@ -4,6 +4,21 @@ from config import BIBLE_BOOKS_FILE
 from models.book import Book
 from models.bibleCatalog import BibleCatalog
 
+"""
+bookManager.py
+
+Purpose:
+    Loads the Bible catalog and provides access to Bible books.
+
+Primary Class:
+    BookManager
+
+Dependencies:
+    - BibleCatalog
+    - Book
+    - books.json
+"""
+
 class BookManager:
 
     def __init__(self):
