@@ -1,3 +1,5 @@
+from models.bibleReference import BibleReference
+
 """
 referenceParser.py
 
@@ -65,4 +67,4 @@ class ReferenceParser:
         bookName = " ".join(parts[:-1])
         chapterNumber = int(parts[-1])
 
-        return bookName, chapterNumber
+        return BibleReference(bookName, chapterNumber)

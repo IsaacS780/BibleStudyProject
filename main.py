@@ -16,7 +16,10 @@ parser = ReferenceParser()
 while True:
     try:
         reference = input("Enter Bible reference: ")
-        bookName, chapterNumber = parser.parse(reference)
+        bibleReference = parser.parse(reference)
+        
+        bookName = bibleReference.book
+        chapterNumber = bibleReference.chapter
         break
     except ValueError:
         print("Invalid reference format. Please enter a valid Bible reference (e.g., 'John 3').")
