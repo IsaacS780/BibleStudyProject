@@ -12,6 +12,7 @@ from managers.bookManager import BookManager
 from managers.referenceParser import ReferenceParser
 from managers.studyService import StudyService
 from managers.loggerManager import getLogger
+from services.aiStudyGenerator import AIStudyGenerator
 
 class Application:
     """
@@ -45,6 +46,7 @@ class Application:
         self.parser = ReferenceParser()
         self.bookManager = BookManager()
         self.studyService = StudyService()
+        self.aiStudyGenerator = AIStudyGenerator()
         self.logger = getLogger()
 
     def getBibleReference(self):
@@ -97,10 +99,9 @@ class Application:
 
         bibleReference = self.getBibleReference()
 
-        # Get summary from the user.
-        summary = input("Enter Summary: ")
+        studyData = self.aiStudyGenerator.generateStudy( bibleReference.book, bibleReference.chapterNumber)
 
-        loadedChapter = self.studyService.createStudy(bibleReference.book, bibleReference.chapterNumber, summary)
+        loadedChapter = self.studyService.createStudy(bibleReference.book, bibleReference.chapterNumber, studyData["summary"])
 
         self.logger.info("Study created successfully.")
 
