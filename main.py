@@ -1,45 +1,49 @@
-from managers.bookManager import BookManager
 from managers.studyService import StudyService
 from managers.referenceParser import ReferenceParser
+from managers.bookManager import BookManager
 
-# Book - Represents one Bible book
-# Bible Catalog -manages a collection of books. Can contain multiple canons and book collections.
-# BookManager - Coordinates loading and access of books
 
-#---------------------------------------------------------------------
-# MAIN PROGRAM FLOW---------------------------------------------------
-#---------------------------------------------------------------------
+# Book - Represents one Bible book.
+# BibleCatalog - Manages a collection of books. Can contain multiple canons and book collections.
+# BookManager - Coordinates loading and access of books.
 
-# Get user input for a Bible reference and parse it into a book name and chapter number.
+# ---------------------------------------------------------------------
+# MAIN PROGRAM FLOW
+# ---------------------------------------------------------------------
+
+# Create managers used throughout the application.
 parser = ReferenceParser()
+bookManager = BookManager()
 
+# Get user input for a Bible reference and validate it.
 while True:
     try:
         reference = input("Enter Bible reference: ")
-        bibleReference = parser.parse(reference)
-        
-        bookName = bibleReference.book
-        chapterNumber = bibleReference.chapter
+
+        bookName, chapterNumber = parser.parse(reference)
+
+        bibleReference = bookManager.createReference(bookName, chapterNumber)
+
+        if bibleReference is None:
+            print(f"'{bookName} {chapterNumber}' is not a valid Bible reference.")
+            continue
+
         break
+
     except ValueError:
         print("Invalid reference format. Please enter a valid Bible reference (e.g., 'John 3').")
+
 
 # Get summary from the user.
 summary = input("Enter Summary: ")
 
-# Create the BookManager.
-bookManager = BookManager()
+# Retrieve the validated Book object from the BibleReference.
+book = bibleReference.book
 
-book = bookManager.getValidBook(bookName, chapterNumber)
-
-# Error condition if reference is invalid.
-if book is None:
-    print(f"'{bookName} {chapterNumber}' is not a valid Bible reference.")
-    exit()
-
+# Create the study.
 studyService = StudyService()
 
 loadedChapter = studyService.createStudy(book, chapterNumber, summary)
 
-print("\nData loaded fromJSON:")
+print("\nData loaded from JSON:")
 print(loadedChapter)

@@ -67,4 +67,4 @@ class ReferenceParser:
         bookName = " ".join(parts[:-1])
         chapterNumber = int(parts[-1])
 
-        return BibleReference(bookName, chapterNumber)
+        return bookName, chapterNumber

@@ -3,6 +3,7 @@ import json
 from config import BIBLE_BOOKS_FILE
 from models.book import Book
 from models.bibleCatalog import BibleCatalog
+from models.bibleReference import BibleReference
 
 """
 bookManager.py
@@ -68,3 +69,23 @@ class BookManager:
         
         # Reference validated above. Return book object.    
         return book
+    
+    def createReference(self, bookName, chapterNumber):
+        """
+        Creates a validated BibleReference object.
+
+        Parameters:
+            bookName (str): Bible book name or alias.
+            chapterNumber (int): Chapter number.
+
+        Returns:
+            BibleReference: Valid reference object.
+            None: If the reference is invalid.
+        """
+
+        book = self.getValidBook(bookName, chapterNumber)
+
+        if book is None:
+            return None
+
+        return BibleReference(book, chapterNumber)

@@ -2,44 +2,46 @@
 bibleReference.py
 
 Purpose:
-    Represents a structured Bible reference.
+    Represents a validated location within the Bible.
 
 Primary Class:
     BibleReference
 """
 
+
 class BibleReference:
     """
     Purpose:
-        Represents a location within the Bible.
+        Represents a validated Bible book and chapter reference.
 
     Current Responsibilities:
-        - Store a Bible book and chapter reference.
+        - Store a validated Bible book.
+        - Store a chapter number.
 
     Future Responsibilities:
         - Store verse ranges.
         - Store translations.
-        - Support cross references.
-        - Connect to study data.
+        - Store cross references.
+        - Connect to study generation.
 
     Methods:
         - toDictionary()
     """
 
-    def __init__(self, book, chapter):
+    def __init__(self, book, chapterNumber):
         """
         Creates a Bible reference.
 
         Parameters:
-            book (Book): The validated Bible book.
-            chapterNumber (int): The chapter number.
+            book (Book): Validated Bible book object.
+            chapterNumber (int): Validated chapter number.
 
         Returns:
             None
         """
 
         self.book = book
-        self.chapter = chapter
+        self.chapterNumber = chapterNumber
 
     def toDictionary(self):
         """
@@ -54,5 +56,5 @@ class BibleReference:
 
         return {
             "book": self.book.name,
-            "chapter": self.chapter
+            "chapter": self.chapterNumber
         }
