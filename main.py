@@ -1,49 +1,24 @@
-from managers.studyService import StudyService
-from managers.referenceParser import ReferenceParser
-from managers.bookManager import BookManager
+"""
+main.py
 
+Purpose:
+    Entry point for the Bible Study Agent application.
+"""
 
-# Book - Represents one Bible book.
-# BibleCatalog - Manages a collection of books. Can contain multiple canons and book collections.
-# BookManager - Coordinates loading and access of books.
+from application import Application
 
-# ---------------------------------------------------------------------
-# MAIN PROGRAM FLOW
-# ---------------------------------------------------------------------
+def main():
+    """
+    Entry point for the Bible Study Agent application.
 
-# Create managers used throughout the application.
-parser = ReferenceParser()
-bookManager = BookManager()
+    Parameters: None
 
-# Get user input for a Bible reference and validate it.
-while True:
-    try:
-        reference = input("Enter Bible reference: ")
+    Returns: None
+    """
 
-        bookName, chapterNumber = parser.parse(reference)
+    app = Application()
+    app.run()
 
-        bibleReference = bookManager.createReference(bookName, chapterNumber)
-
-        if bibleReference is None:
-            print(f"'{bookName} {chapterNumber}' is not a valid Bible reference.")
-            continue
-
-        break
-
-    except ValueError:
-        print("Invalid reference format. Please enter a valid Bible reference (e.g., 'John 3').")
-
-
-# Get summary from the user.
-summary = input("Enter Summary: ")
-
-# Retrieve the validated Book object from the BibleReference.
-book = bibleReference.book
-
-# Create the study.
-studyService = StudyService()
-
-loadedChapter = studyService.createStudy(book, chapterNumber, summary)
-
-print("\nData loaded from JSON:")
-print(loadedChapter)
+# Run the main function if this script is executed directly.
+if __name__ == "__main__":
+    main()
