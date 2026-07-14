@@ -8,13 +8,10 @@ Primary Class:
     Application
 """
 
-from email import parser
-
-from managers import bookManager
 from managers.bookManager import BookManager
 from managers.referenceParser import ReferenceParser
 from managers.studyService import StudyService
-
+from managers.loggerManager import getLogger
 
 class Application:
     """
@@ -48,6 +45,7 @@ class Application:
         self.parser = ReferenceParser()
         self.bookManager = BookManager()
         self.studyService = StudyService()
+        self.logger = getLogger()
 
     def getBibleReference(self):
         """
@@ -102,7 +100,9 @@ class Application:
         # Get summary from the user.
         summary = input("Enter Summary: ")
 
-        loadedChapter = self.studyService.createStudy(bibleReference.book, bibleReference.chapter, summary)
+        loadedChapter = self.studyService.createStudy(bibleReference.book, bibleReference.chapterNumber, summary)
+
+        self.logger.info("Study created successfully.")
 
         print("\nData loaded from JSON:")
         print(loadedChapter)

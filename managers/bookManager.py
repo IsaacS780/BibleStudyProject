@@ -4,6 +4,7 @@ from config import BIBLE_BOOKS_FILE
 from models.book import Book
 from models.bibleCatalog import BibleCatalog
 from models.bibleReference import BibleReference
+from managers.catalogValidator import CatalogValidator
 
 """
 bookManager.py
@@ -30,10 +31,18 @@ class BookManager:
         with open(BIBLE_BOOKS_FILE, "r") as file:
             bookData = json.load(file)
 
+        CatalogValidator().validate(bookData)
+
         books = {}
 
         for name, data in bookData.items():
-            books[name] = Book(name, data["chapters"], data["canon"], data.get("aliases", []))
+            books[name] = Book(
+                name,
+                data["chapters"],
+                data["canon"],
+                data["testament"],
+                data.get("aliases", [])
+            )
 
         return BibleCatalog(books)
     
