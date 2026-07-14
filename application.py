@@ -10,9 +10,9 @@ Primary Class:
 
 from managers.bookManager import BookManager
 from managers.referenceParser import ReferenceParser
-from managers.studyService import StudyService
+from services.studyService import StudyService
 from managers.loggerManager import getLogger
-from services.aiStudyGenerator import AIStudyGenerator
+from exceptions import AIProviderError
 
 class Application:
     """
@@ -46,7 +46,6 @@ class Application:
         self.parser = ReferenceParser()
         self.bookManager = BookManager()
         self.studyService = StudyService()
-        self.aiStudyGenerator = AIStudyGenerator()
         self.logger = getLogger()
 
     def getBibleReference(self):
@@ -99,9 +98,15 @@ class Application:
 
         bibleReference = self.getBibleReference()
 
-        studyData = self.aiStudyGenerator.generateStudy( bibleReference.book, bibleReference.chapterNumber)
-
-        loadedChapter = self.studyService.createStudy(bibleReference.book, bibleReference.chapterNumber, studyData["summary"])
+        while True:
+            try:
+                loadedChapter = self.studyService.createStudy(bibleReference.book, bibleReference.chapterNumber)
+                break
+            except AIProviderError as error:
+                retry = input(f"AI provider is temporarily unavailable: {error}. Would you like to retry? (y/n): ")
+                if retry.lower() != 'y':
+                    print("Exiting the application.")
+                    return
 
         self.logger.info("Study created successfully.")
 

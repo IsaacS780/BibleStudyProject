@@ -1,0 +1,8 @@
+# John Chapter 2
+John chapter 2 marks the beginning of Jesus’ public ministry through two powerful demonstrations of his identity, authority, and the arrival of the new covenant. 
+
+In the first event, the wedding at Cana (verses 1–12), Jesus performs his first miraculous "sign" by turning water used for ceremonial Jewish purification into abundant, high-quality wine. This miracle reveals his divine glory, fulfills Old Testament prophecies of messianic abundance, and prompts his disciples to put their faith in him. The transition from purification water to wine symbolizes the shift from the old covenant rituals to the grace, joy, and saving power of the Gospel. 
+
+Moving to Jerusalem for the Passover (verses 13–25), Jesus cleanses the temple, driving out the merchants and money changers who had turned his Father’s house into a marketplace. This act of righteous anger demonstrates his authority over worship and his zeal for God's holiness. When questioned by the religious leaders, Jesus offers a prophetic sign of his authority: the destruction and three-day resurrection of the "temple" of his own body, pointing to himself as the ultimate dwelling place of God. 
+
+The chapter concludes with a warning about superficial faith, noting that while many believed because of his miracles, Jesus knew the true, fickle nature of human hearts. Ultimately, John 2 invites us to move past external rituals and shallow belief, calling us to recognize Jesus as the source of new life and the true center of worship.

@@ -1,6 +1,8 @@
+from models import book
 from models.chapter import Chapter
 from managers.studyNotes import createStudyNote
 from managers.dataManager import saveChapterData, loadChapterData
+from services.aiService import AIService
 
 class StudyService:
     """
@@ -8,30 +10,42 @@ class StudyService:
         Coordinates the complete Bible study creation workflow.
 
     Current Responsibilities:
+        - Generate AI study content.
         - Create Chapter objects.
         - Generate Markdown study notes.
         - Save study data as JSON.
         - Return the saved study data.
 
     Future Responsibilities:
-    - Generate AI study content.
-    - Update character database.
-    - Update place database.
-    - Update timeline.
-    - Generate cross references.
+        - Update character database.
+        - Update place database.
+        - Update timeline.
+        - Generate cross references.
 
     Workflow:
-        1. Receive validated study information.
-        2. Create a Chapter object.
-        3. Generate the Markdown note.
-        4. Save the study as JSON.
-        5. Load and return the saved data.
+        1. Receive validated Bible information.
+        2. Request AI-generated study content.
+        3. Create a Chapter object.
+        4. Generate the Markdown note.
+        5. Save the study as JSON.
+        6. Load and return the saved data.
 
     Methods:
-        - createStudy(book, chapterNumber, summary)
+        - createStudy(book, chapterNumber)
     """
 
-    def createStudy(self, book, chapterNumber, summary):
+    def __init__(self):
+        """
+        Creates the StudyService and initializes the AIService.
+
+        Parameters: None
+
+        Returns: None
+        """
+
+        self.aiService = AIService()
+
+    def createStudy(self, book, chapterNumber):
         """
         Creates a complete Bible study.
 
@@ -50,8 +64,9 @@ class StudyService:
             5. Return the loaded data.
         """
          
-        # Create the Chapter object.
-        chapter = Chapter(book.name, chapterNumber, summary)
+        studyData = self.aiService.generateStudy(book, chapterNumber)
+
+        chapter = Chapter(book.name, chapterNumber, studyData["summary"])
 
         # Create the Markdown study note.
         createStudyNote(chapter)
