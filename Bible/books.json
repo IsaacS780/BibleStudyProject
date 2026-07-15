@@ -37,6 +37,15 @@
         "II Chronicles"
     ]
     },
+    "Song of Solomon": {
+    "chapters": 8,
+    "canon": "Protestant",
+    "testament": "Old",
+    "aliases": [
+        "Song of Songs",
+        "So"
+    ]
+    },
     "John": {
     "chapters": 21,
     "canon": "Protestant",
