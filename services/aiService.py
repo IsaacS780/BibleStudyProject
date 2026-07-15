@@ -80,4 +80,6 @@ class AIService:
         except json.JSONDecodeError:
             raise ValueError("AI returned invalid JSON.")
 
+        StudyData.validateDictionary(study)
+        
         return StudyData.fromDictionary(study)

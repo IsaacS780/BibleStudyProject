@@ -32,6 +32,15 @@ class StudyData:
         - toDictionary()
     """
 
+    REQUIRED_FIELDS = [
+    "summary",
+    "people",
+    "places",
+    "themes",
+    "crossReferences",
+    "applications"
+    ]
+    
     def __init__(
         self,
         summary,
@@ -62,6 +71,23 @@ class StudyData:
         self.themes = themes or []
         self.crossReferences = crossReferences or []
         self.applications = applications or []
+
+    @classmethod
+    def validateDictionary(cls, data):
+        """
+        Validates AI-generated study data.
+
+        Parameters:
+            data (dict): Parsed AI response.
+
+        Returns: None
+
+        Raises: ValueError: If required fields are missing.
+        """
+
+        for field in cls.REQUIRED_FIELDS:
+            if field not in data:
+                raise ValueError(f"AI response missing required field '{field}'.")
 
     @classmethod
     def fromDictionary(cls, data):

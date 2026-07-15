@@ -51,11 +51,6 @@ class GeminiProvider:
                 config = types.GenerateContentConfig(response_mime_type = "application/json")
             )
 
-            # DEBUG CODE TO REMOVE LATER
-            #print("1",type(response))
-            #print("2", response)
-            #print("3", response.text)
-
             return response.text.strip()
         
         except Exception as error:
