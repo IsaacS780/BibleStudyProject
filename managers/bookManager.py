@@ -12,6 +12,12 @@ bookManager.py
 Purpose:
     Loads the Bible catalog and provides access to Bible books.
 
+    Current Responsibilities:
+    - Load the Bible catalog from books.json.
+    - Resolve canonical names.
+    - Resolve aliases.
+    - Validate whether a book exists.
+
 Primary Class:
     BookManager
 

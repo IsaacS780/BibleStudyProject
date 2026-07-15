@@ -72,8 +72,6 @@ class AIService:
 
         response = self.provider.generate(prompt)
 
-        print(f"AI response: {response}")
-
         try:
             study = json.loads(response)
 
@@ -81,5 +79,5 @@ class AIService:
             raise ValueError("AI returned invalid JSON.")
 
         StudyData.validateDictionary(study)
-        
+
         return StudyData.fromDictionary(study)
