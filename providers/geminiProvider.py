@@ -8,9 +8,12 @@ Methods:
     - generate()
 """
 
+from urllib import response
+
 import config
 
 from google import genai
+from google.genai import types
 from exceptions import AIProviderError
 
 class GeminiProvider:
@@ -44,10 +47,16 @@ class GeminiProvider:
             # Sends a request to Gemini and returns the generated content.
             response = self.client.models.generate_content(
                 model = config.GEMINI_MODEL,
-                contents=prompt
+                contents=prompt,
+                config = types.GenerateContentConfig(response_mime_type = "application/json")
             )
 
-            return response.text
+            # DEBUG CODE TO REMOVE LATER
+            #print("1",type(response))
+            #print("2", response)
+            #print("3", response.text)
+
+            return response.text.strip()
         
         except Exception as error:
             raise AIProviderError(f"Error generating content from Gemini: {error}")

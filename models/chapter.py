@@ -19,15 +19,12 @@ class Chapter:
         self.chapterNumber = chapterNumber
         self.studyData = studyData
 
-        self.people = []
-        self.themes = []
-
     # Instance methods to return fileName, json file name, and folder name.
     def getFileName(self):
-        return f"{self.book}{self.chapter}.md"
+        return f"{self.book}{self.chapterNumber}.md"
     
     def getJsonFileName(self):
-        return f"{self.book}{self.chapter}.json"
+        return f"{self.book}{self.chapterNumber}.json"
     
     def getFolderName(self):
         return f"{BIBLE_FOLDER}/{self.book}"

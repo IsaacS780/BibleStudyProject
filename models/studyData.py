@@ -28,6 +28,7 @@ class StudyData:
         - Store word studies.
 
     Methods:
+        - fromDictionary()
         - toDictionary()
     """
 
@@ -62,6 +63,21 @@ class StudyData:
         self.crossReferences = crossReferences or []
         self.applications = applications or []
 
+    @classmethod
+    def fromDictionary(cls, data):
+        """
+        Creates a StudyData object from AI JSON.
+        """
+
+        return cls(
+            summary=data.get("summary", ""),
+            people=data.get("people", []),
+            places=data.get("places", []),
+            themes=data.get("themes", []),
+            crossReferences=data.get("crossReferences", []),
+            applications=data.get("applications", [])
+        )
+    
     def toDictionary(self):
         """
         Converts the StudyData object into a dictionary.

@@ -1,5 +1,24 @@
-Create a Bible study for $book chapter $chapter.
+Generate a Bible study for ${book} chapter ${chapter}.
 
-Write a concise summary suitable for a Bible study note.
+Return ONLY a valid JSON object.
 
-Do not include headings.
+Do not include:
+
+- Markdown
+- ```json
+
+  ```
+- Explanations
+- Introductory text
+- Closing text
+
+Use this exact schema:
+
+{
+    "summary": "One or more paragraphs.",
+    "people": [],
+    "places": [],
+    "themes": [],
+    "crossReferences": [],
+    "applications": []
+}

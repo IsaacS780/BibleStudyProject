@@ -1,0 +1,9 @@
+The following changes were reverted from the AI JSON parsing work:
+
+1. services/aiService.py
+   - Removed the additional JSON extraction and sanitization helpers.
+   - Restored the original simple json.loads(response) flow.
+
+2. tests/test_aiService.py
+   - Removed the FencedJsonProvider test double and regression test.
+   - Restored the original test content.

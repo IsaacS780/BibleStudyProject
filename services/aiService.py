@@ -7,6 +7,7 @@ Purpose:
 Primary Class:
     AIService
 """
+import json
 
 from exceptions import AIProviderError
 from models.studyData import StudyData
@@ -30,6 +31,7 @@ class AIService:
         3. Send prompt to provider.
         4. Return generated study.
 
+        prompt-> provider-> raw json -> json.loads() -> StudyData object
     Methods:
         - __init__()
         - generateStudy()
@@ -68,6 +70,14 @@ class AIService:
 
         prompt = self.promptBuilder.buildStudyPrompt(book.name, chapterNumber)
 
-        summary = self.provider.generate(prompt)
+        response = self.provider.generate(prompt)
 
-        return StudyData(summary)
+        print(f"AI response: {response}")
+
+        try:
+            study = json.loads(response)
+
+        except json.JSONDecodeError:
+            raise ValueError("AI returned invalid JSON.")
+
+        return StudyData.fromDictionary(study)
