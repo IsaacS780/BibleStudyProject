@@ -18,7 +18,7 @@ def createStudyNote(chapter):
         # Write chapter name as heading.
         file.write(f"# {chapter.book} Chapter { chapter.chapter}\n")
         # Write summary into md file.
-        file.write(chapter.summary)
+        file.write(chapter.studyData.summary)
 
     # Print success message
     print(f"Created {filePath}")

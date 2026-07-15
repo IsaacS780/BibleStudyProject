@@ -9,6 +9,7 @@ Primary Class:
 """
 
 from exceptions import AIProviderError
+from models.studyData import StudyData
 from providers.providerFactory import ProviderFactory
 from services.promptBuilder import PromptBuilder
 
@@ -69,6 +70,4 @@ class AIService:
 
         summary = self.provider.generate(prompt)
 
-        return {
-            "summary": summary
-        }
+        return StudyData(summary)

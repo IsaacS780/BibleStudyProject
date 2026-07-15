@@ -66,7 +66,7 @@ class StudyService:
          
         studyData = self.aiService.generateStudy(book, chapterNumber)
 
-        chapter = Chapter(book.name, chapterNumber, studyData["summary"])
+        chapter = Chapter(book.name, chapterNumber, studyData)
 
         # Create the Markdown study note.
         createStudyNote(chapter)

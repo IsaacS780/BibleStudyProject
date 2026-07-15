@@ -2,11 +2,22 @@ from config import BIBLE_FOLDER
 
 class Chapter:
 
-    def __init__(self, book, chapter, summary):
-        #Attributes. Can access as: chapter.book=book vs chapter["book"]
+    def __init__(self, book, chapterNumber, studyData):
+        """
+        Creates a Chapter object.
+
+        Parameters:
+            book (str): Bible book name.
+            chapterNumber (int): Chapter number.
+            studyData (StudyData): AI-generated study data.
+
+        Returns:
+            None
+        """
+
         self.book = book
-        self.chapter = chapter
-        self.summary = summary
+        self.chapterNumber = chapterNumber
+        self.studyData = studyData
 
         self.people = []
         self.themes = []
@@ -25,8 +36,6 @@ class Chapter:
     def toDictionary(self):
         return {
             "book": self.book,
-            "chapter": self.chapter,
-            "summary": self.summary,
-            "people": self.people,
-            "themes": self.themes
+            "chapter": self.chapterNumber,
+            "studyData": self.studyData.toDictionary()
         }
