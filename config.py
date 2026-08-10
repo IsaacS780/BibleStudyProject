@@ -5,6 +5,8 @@ from dotenv import load_dotenv
 load_dotenv()  # Load environment variables from .env file
 
 # -------------- File structure --------------------
+OUTPUT_ROOT = r"C:\All Folders\BibleStudyVault\BibleStudies"
+
 BIBLE_FOLDER = "Bible"
 
 BIBLE_BOOKS_FILE = "Bible/books.json"
